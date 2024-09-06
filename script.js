@@ -2,7 +2,7 @@
 var blockSize = 25;
 var rows = 20;
 var cols = 20;
-var board;
+const board = document.querySelector('#board')
 var context;
 //snakes head
 var snakeX = blockSize * 5;
@@ -14,7 +14,7 @@ var velocityY = 0;
 var foodX 
 var foodY 
 window.onload = function(){
-    board =document.getElementById('board');
+    // board =document.getElementById('board');
     board.height = rows* blockSize;
     board.width = cols * blockSize;
     context = board.getContext('2d'); // Used for drawing on the canvas
@@ -42,6 +42,7 @@ function update(){
     
 }
 function changeDirection(e){
+    console.log(e);
     if (e.code =='ArrowUp' && velocityY !=1){
         velocityX =0;
         velocityY = -1;
@@ -63,5 +64,8 @@ function changeDirection(e){
 function placeFood(){
     foodX = Math.floor(Math.random() * cols) * blockSize;
     foodY = Math.floor(Math.random() * rows ) * blockSize;
+}
+// When the snake head collides with the left wall of the board,the head will be placed at the right wall of the board.
+function collision(){
 
 }
