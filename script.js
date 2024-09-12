@@ -1,4 +1,4 @@
-const canvas = document.querySelector('gameCanvas');
+const canvas = document.getElementById('board');
 const ctx = canvas.getContext('2d');
 const scoreElement = document.getElementById('scoreValue');
 const highScoreElement = document.getElementById('highScoreValue');
@@ -19,6 +19,7 @@ let highScore = 0;
 let gameSpeed = 100;
 let gameLoop;
 let isPaused = false;
+let isGameStarted = false;
 
 const foodTypes = [
     { type: 'normal', color: 'red', points: 1, probability: 0.7 },
@@ -28,6 +29,7 @@ const foodTypes = [
 
 function drawGame() {
     if (isPaused) return;
+
     clearCanvas();
     moveSnake();
     drawSnake();
@@ -37,7 +39,7 @@ function drawGame() {
 }
 
 function clearCanvas() {
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = isGameStarted ? 'black' : 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -105,6 +107,7 @@ function gameOver() {
     }
     finalScoreElement.textContent = score;
     gameOverScreen.style.display = 'block';
+    isGameStarted = false;
 }
 
 function updateScore() {
@@ -168,11 +171,13 @@ function startGame() {
     dx = 0;
     dy = 0;
     score = 0;
-    gameSpeed = 1000;
+    gameSpeed = 100;
     isPaused = false;
+    isGameStarted = true;
     updateScore();
     startButton.style.display = 'none';
     gameOverScreen.style.display = 'none';
+    clearCanvas(); // Clear the canvas with the new background color
     gameLoop = setInterval(drawGame, gameSpeed);
 }
 
@@ -182,6 +187,7 @@ function init() {
     document.addEventListener('keydown', changeDirection);
     startButton.addEventListener('click', startGame);
     restartButton.addEventListener('click', startGame);
+    clearCanvas(); // Initial clear to set the white background
 }
 
 init();
