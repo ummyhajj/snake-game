@@ -1,5 +1,5 @@
-const canvas = document.getElementById('board');
-const ctx = canvas.getContext('2d');
+const board = document.getElementById('board');
+const ctx = board.getContext('2d');
 const scoreElement = document.getElementById('scoreValue');
 const highScoreElement = document.getElementById('highScoreValue');
 const startButton = document.getElementById('startButton');
@@ -8,7 +8,7 @@ const finalScoreElement = document.getElementById('finalScore');
 const restartButton = document.getElementById('restartButton');
 
 const gridSize = 20;
-const tileCount = canvas.width / gridSize;
+const tileCount = board.width / gridSize;
 
 let snake = [{ x: 10, y: 10 }];
 let food = { x: 15, y: 15, type: 'normal' };
@@ -30,7 +30,7 @@ const foodTypes = [
 function drawGame() {
     if (isPaused) return;
 
-    clearCanvas();
+    clearBoard();
     moveSnake();
     drawSnake();
     drawFood();
@@ -38,9 +38,9 @@ function drawGame() {
     updateScore();
 }
 
-function clearCanvas() {
+function clearBoard() {
     ctx.fillStyle = isGameStarted ? 'black' : 'white';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, board.width, board.height);
 }
 
 function moveSnake() {
@@ -177,7 +177,7 @@ function startGame() {
     updateScore();
     startButton.style.display = 'none';
     gameOverScreen.style.display = 'none';
-    clearCanvas(); // Clear the canvas with the new background color
+    clearBoard(); // Clear the board with the new background color
     gameLoop = setInterval(drawGame, gameSpeed);
 }
 
@@ -187,7 +187,7 @@ function init() {
     document.addEventListener('keydown', changeDirection);
     startButton.addEventListener('click', startGame);
     restartButton.addEventListener('click', startGame);
-    clearCanvas(); // Initial clear to set the white background
+    clearBoard(); // Initial clear to set the white background
 }
 
 init();
