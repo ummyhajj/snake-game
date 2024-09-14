@@ -47,7 +47,7 @@ function moveSnake() {
     snake.unshift(head);
 
     if (head.x === food.x && head.y === food.y) {
-        score += foodTypes.find(f => f.type === food.type).points;
+        score =score + foodTypes.find(f => f.type === food.type).points;
         if (food.type === 'speed') {
             gameSpeed = Math.max(50, gameSpeed - 5);
             clearInterval(gameLoop);
@@ -152,6 +152,7 @@ function changeDirection(event) {
     if (keyPressed === DOWN_KEY && !goingUp) {
         dx = 0;
         dy = 1;
+       
     }
 }
 
@@ -178,6 +179,11 @@ function startGame() {
     gameOverScreen.style.display = 'none';
     clearBoard(); // Clear the board with the new background color
     gameLoop = setInterval(drawGame, gameSpeed);
+}
+function chechHighScore(){
+    if (score >= 10){
+triggerConfetti();
+    }
 }
 
 function init() {
