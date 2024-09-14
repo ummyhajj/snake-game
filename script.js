@@ -29,7 +29,6 @@ const foodTypes = [
 
 function drawGame() {
     if (isPaused) return;
-
     clearBoard();
     moveSnake();
     drawSnake();
@@ -96,7 +95,7 @@ function checkCollision() {
             gameOver();
         }
     }
-}
+}4
 
 function gameOver() {
     clearInterval(gameLoop);
