@@ -1,3 +1,3 @@
 
-Game levels:levels 1,leve3l,2 and level 3
+Game levels:levels 1, level 2, and level 3
 Controls: Add a function so that the snake can move in all directions in order not to hit the wall.When the snake is about to hit the wall and you click on the down arrow,its tail should move two gridSize down.
