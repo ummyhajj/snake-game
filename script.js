@@ -16,7 +16,7 @@ let dx = 0;
 let dy = 0;
 let score = 0;
 let highScore = 0;
-let gameSpeed = 100;
+let gameSpeed = 1000;
 let gameLoop;
 let isPaused = false;
 let isGameStarted = false;
@@ -120,13 +120,14 @@ function checkHighScore() {
     if (score >= 10 && !hasReachedTen) {
         hasReachedTen = true;
         triggerConfetti();
+        alert('Congratulations! You have reached 10 points!');
     }
 }
 
 function triggerConfetti() {
     confetti({
         particleCount: 100,
-        spread: 70,
+        spread: 50,
         origin: { y: 0.6 }
     });
 }
