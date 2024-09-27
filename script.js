@@ -120,7 +120,7 @@ function checkHighScore() {
     if (score >= 10 && !hasReachedTen) {
         hasReachedTen = true;
         triggerConfetti();
-        alert('Congratulations! You have reached 10 points!');
+        alert('Congratulations! You have reached 10 points!').style.display = 'block';
     }
 }
 
